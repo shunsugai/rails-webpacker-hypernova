@@ -6,8 +6,9 @@ const webpack = require('webpack')
 const merge = require('webpack-merge')
 const CompressionPlugin = require('compression-webpack-plugin')
 const sharedConfig = require('./shared.js')
+const serverConfig = require('./server.js')
 
-module.exports = merge(sharedConfig, {
+module.exports = [merge(sharedConfig, {
   output: { filename: '[name]-[chunkhash].js' },
   devtool: 'source-map',
   stats: 'normal',
@@ -32,4 +33,4 @@ module.exports = merge(sharedConfig, {
       test: /\.(js|css|html|json|ico|svg|eot|otf|ttf)$/
     })
   ]
-})
+}), serverConfig]
